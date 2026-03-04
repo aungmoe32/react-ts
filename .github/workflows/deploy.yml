@@ -35,3 +35,11 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:custom-${{ env.DATE_STAMP }}
             ${{ env.IMAGE_NAME }}:awesome-latest
+
+      - name: Trigger Dokploy Deployment
+        uses: benbristow/dokploy-deploy-action@0.2.2
+        with:
+          api_token: ${{ secrets.DOKPLOY_AUTH_TOKEN }}
+          application_id: ${{ secrets.DOKPLOY_APPLICATION_ID }}
+          dokploy_url: ${{ secrets.DOKPLOY_URL }}
+          service_type: application
